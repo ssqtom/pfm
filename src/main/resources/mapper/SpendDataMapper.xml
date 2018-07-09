@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssq.pfm.dao.SpendDataMapper" >
+  <resultMap id="BaseResultMap" type="com.ssq.pfm.model.SpendData" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SPEND_USER_ID" property="spendUserId" jdbcType="BIGINT" />
+    <result column="SPEND_TYPE" property="spendType" jdbcType="CHAR" />
+    <result column="SPEND_TOTAL" property="spendTotal" jdbcType="DOUBLE" />
+    <result column="SPEND_DATE" property="spendDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SPEND_USER_ID, SPEND_TYPE, SPEND_TOTAL, SPEND_DATE, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SPEND_DATA
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SPEND_DATA
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ssq.pfm.model.SpendData" >
+    insert into SPEND_DATA (ID, SPEND_USER_ID, SPEND_TYPE, 
+      SPEND_TOTAL, SPEND_DATE, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{spendUserId,jdbcType=BIGINT}, #{spendType,jdbcType=CHAR}, 
+      #{spendTotal,jdbcType=DOUBLE}, #{spendDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssq.pfm.model.SpendData" >
+    insert into SPEND_DATA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="spendUserId != null" >
+        SPEND_USER_ID,
+      </if>
+      <if test="spendType != null" >
+        SPEND_TYPE,
+      </if>
+      <if test="spendTotal != null" >
+        SPEND_TOTAL,
+      </if>
+      <if test="spendDate != null" >
+        SPEND_DATE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="spendUserId != null" >
+        #{spendUserId,jdbcType=BIGINT},
+      </if>
+      <if test="spendType != null" >
+        #{spendType,jdbcType=CHAR},
+      </if>
+      <if test="spendTotal != null" >
+        #{spendTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="spendDate != null" >
+        #{spendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssq.pfm.model.SpendData" >
+    update SPEND_DATA
+    <set >
+      <if test="spendUserId != null" >
+        SPEND_USER_ID = #{spendUserId,jdbcType=BIGINT},
+      </if>
+      <if test="spendType != null" >
+        SPEND_TYPE = #{spendType,jdbcType=CHAR},
+      </if>
+      <if test="spendTotal != null" >
+        SPEND_TOTAL = #{spendTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="spendDate != null" >
+        SPEND_DATE = #{spendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssq.pfm.model.SpendData" >
+    update SPEND_DATA
+    set SPEND_USER_ID = #{spendUserId,jdbcType=BIGINT},
+      SPEND_TYPE = #{spendType,jdbcType=CHAR},
+      SPEND_TOTAL = #{spendTotal,jdbcType=DOUBLE},
+      SPEND_DATE = #{spendDate,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

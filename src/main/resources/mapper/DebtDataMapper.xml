@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssq.pfm.dao.DebtDataMapper" >
+  <resultMap id="BaseResultMap" type="com.ssq.pfm.model.DebtData" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="DEBT_USER_ID" property="debtUserId" jdbcType="BIGINT" />
+    <result column="DEBT_TYPE" property="debtType" jdbcType="CHAR" />
+    <result column="DEBT_TOTAL_AMOUNT" property="debtTotalAmount" jdbcType="DOUBLE" />
+    <result column="DEBT_TOTAL_MONTH" property="debtTotalMonth" jdbcType="INTEGER" />
+    <result column="DEBT_PAY_AMOUNT" property="debtPayAmount" jdbcType="DOUBLE" />
+    <result column="DEBT_PAY_MONTH" property="debtPayMonth" jdbcType="INTEGER" />
+    <result column="DEBT_PAY_DATE" property="debtPayDate" jdbcType="INTEGER" />
+    <result column="DEBT_SURPLUS_MONTH" property="debtSurplusMonth" jdbcType="INTEGER" />
+    <result column="DEBT_SURPLUS_AMOUNT" property="debtSurplusAmount" jdbcType="DOUBLE" />
+    <result column="DEBT_EVERY_AMOUNT" property="debtEveryAmount" jdbcType="DOUBLE" />
+    <result column="DEBT_LOW_AMOUNT" property="debtLowAmount" jdbcType="DOUBLE" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DEBT_USER_ID, DEBT_TYPE, DEBT_TOTAL_AMOUNT, DEBT_TOTAL_MONTH, DEBT_PAY_AMOUNT, 
+    DEBT_PAY_MONTH, DEBT_PAY_DATE, DEBT_SURPLUS_MONTH, DEBT_SURPLUS_AMOUNT, DEBT_EVERY_AMOUNT, 
+    DEBT_LOW_AMOUNT, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from DEBT_DATA
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from DEBT_DATA
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ssq.pfm.model.DebtData" >
+    insert into DEBT_DATA (ID, DEBT_USER_ID, DEBT_TYPE, 
+      DEBT_TOTAL_AMOUNT, DEBT_TOTAL_MONTH, DEBT_PAY_AMOUNT, 
+      DEBT_PAY_MONTH, DEBT_PAY_DATE, DEBT_SURPLUS_MONTH, 
+      DEBT_SURPLUS_AMOUNT, DEBT_EVERY_AMOUNT, DEBT_LOW_AMOUNT, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{debtUserId,jdbcType=BIGINT}, #{debtType,jdbcType=CHAR}, 
+      #{debtTotalAmount,jdbcType=DOUBLE}, #{debtTotalMonth,jdbcType=INTEGER}, #{debtPayAmount,jdbcType=DOUBLE}, 
+      #{debtPayMonth,jdbcType=INTEGER}, #{debtPayDate,jdbcType=INTEGER}, #{debtSurplusMonth,jdbcType=INTEGER}, 
+      #{debtSurplusAmount,jdbcType=DOUBLE}, #{debtEveryAmount,jdbcType=DOUBLE}, #{debtLowAmount,jdbcType=DOUBLE}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssq.pfm.model.DebtData" >
+    insert into DEBT_DATA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="debtUserId != null" >
+        DEBT_USER_ID,
+      </if>
+      <if test="debtType != null" >
+        DEBT_TYPE,
+      </if>
+      <if test="debtTotalAmount != null" >
+        DEBT_TOTAL_AMOUNT,
+      </if>
+      <if test="debtTotalMonth != null" >
+        DEBT_TOTAL_MONTH,
+      </if>
+      <if test="debtPayAmount != null" >
+        DEBT_PAY_AMOUNT,
+      </if>
+      <if test="debtPayMonth != null" >
+        DEBT_PAY_MONTH,
+      </if>
+      <if test="debtPayDate != null" >
+        DEBT_PAY_DATE,
+      </if>
+      <if test="debtSurplusMonth != null" >
+        DEBT_SURPLUS_MONTH,
+      </if>
+      <if test="debtSurplusAmount != null" >
+        DEBT_SURPLUS_AMOUNT,
+      </if>
+      <if test="debtEveryAmount != null" >
+        DEBT_EVERY_AMOUNT,
+      </if>
+      <if test="debtLowAmount != null" >
+        DEBT_LOW_AMOUNT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="debtUserId != null" >
+        #{debtUserId,jdbcType=BIGINT},
+      </if>
+      <if test="debtType != null" >
+        #{debtType,jdbcType=CHAR},
+      </if>
+      <if test="debtTotalAmount != null" >
+        #{debtTotalAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="debtTotalMonth != null" >
+        #{debtTotalMonth,jdbcType=INTEGER},
+      </if>
+      <if test="debtPayAmount != null" >
+        #{debtPayAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="debtPayMonth != null" >
+        #{debtPayMonth,jdbcType=INTEGER},
+      </if>
+      <if test="debtPayDate != null" >
+        #{debtPayDate,jdbcType=INTEGER},
+      </if>
+      <if test="debtSurplusMonth != null" >
+        #{debtSurplusMonth,jdbcType=INTEGER},
+      </if>
+      <if test="debtSurplusAmount != null" >
+        #{debtSurplusAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="debtEveryAmount != null" >
+        #{debtEveryAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="debtLowAmount != null" >
+        #{debtLowAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssq.pfm.model.DebtData" >
+    update DEBT_DATA
+    <set >
+      <if test="debtUserId != null" >
+        DEBT_USER_ID = #{debtUserId,jdbcType=BIGINT},
+      </if>
+      <if test="debtType != null" >
+        DEBT_TYPE = #{debtType,jdbcType=CHAR},
+      </if>
+      <if test="debtTotalAmount != null" >
+        DEBT_TOTAL_AMOUNT = #{debtTotalAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="debtTotalMonth != null" >
+        DEBT_TOTAL_MONTH = #{debtTotalMonth,jdbcType=INTEGER},
+      </if>
+      <if test="debtPayAmount != null" >
+        DEBT_PAY_AMOUNT = #{debtPayAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="debtPayMonth != null" >
+        DEBT_PAY_MONTH = #{debtPayMonth,jdbcType=INTEGER},
+      </if>
+      <if test="debtPayDate != null" >
+        DEBT_PAY_DATE = #{debtPayDate,jdbcType=INTEGER},
+      </if>
+      <if test="debtSurplusMonth != null" >
+        DEBT_SURPLUS_MONTH = #{debtSurplusMonth,jdbcType=INTEGER},
+      </if>
+      <if test="debtSurplusAmount != null" >
+        DEBT_SURPLUS_AMOUNT = #{debtSurplusAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="debtEveryAmount != null" >
+        DEBT_EVERY_AMOUNT = #{debtEveryAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="debtLowAmount != null" >
+        DEBT_LOW_AMOUNT = #{debtLowAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssq.pfm.model.DebtData" >
+    update DEBT_DATA
+    set DEBT_USER_ID = #{debtUserId,jdbcType=BIGINT},
+      DEBT_TYPE = #{debtType,jdbcType=CHAR},
+      DEBT_TOTAL_AMOUNT = #{debtTotalAmount,jdbcType=DOUBLE},
+      DEBT_TOTAL_MONTH = #{debtTotalMonth,jdbcType=INTEGER},
+      DEBT_PAY_AMOUNT = #{debtPayAmount,jdbcType=DOUBLE},
+      DEBT_PAY_MONTH = #{debtPayMonth,jdbcType=INTEGER},
+      DEBT_PAY_DATE = #{debtPayDate,jdbcType=INTEGER},
+      DEBT_SURPLUS_MONTH = #{debtSurplusMonth,jdbcType=INTEGER},
+      DEBT_SURPLUS_AMOUNT = #{debtSurplusAmount,jdbcType=DOUBLE},
+      DEBT_EVERY_AMOUNT = #{debtEveryAmount,jdbcType=DOUBLE},
+      DEBT_LOW_AMOUNT = #{debtLowAmount,jdbcType=DOUBLE},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
