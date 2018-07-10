@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssq.pfm.dao.PermissionDataMapper" >
+  <resultMap id="BaseResultMap" type="com.ssq.pfm.model.PermissionData" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="PER_URL" property="perUrl" jdbcType="VARCHAR" />
+    <result column="PER_NAME" property="perName" jdbcType="VARCHAR" />
+    <result column="PER_SORT" property="perSort" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PER_URL, PER_NAME, PER_SORT, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from PERMISSION_DATA
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from PERMISSION_DATA
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ssq.pfm.model.PermissionData" >
+    insert into PERMISSION_DATA (ID, PER_URL, PER_NAME, 
+      PER_SORT, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{perUrl,jdbcType=VARCHAR}, #{perName,jdbcType=VARCHAR}, 
+      #{perSort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssq.pfm.model.PermissionData" >
+    insert into PERMISSION_DATA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="perUrl != null" >
+        PER_URL,
+      </if>
+      <if test="perName != null" >
+        PER_NAME,
+      </if>
+      <if test="perSort != null" >
+        PER_SORT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="perUrl != null" >
+        #{perUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="perName != null" >
+        #{perName,jdbcType=VARCHAR},
+      </if>
+      <if test="perSort != null" >
+        #{perSort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssq.pfm.model.PermissionData" >
+    update PERMISSION_DATA
+    <set >
+      <if test="perUrl != null" >
+        PER_URL = #{perUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="perName != null" >
+        PER_NAME = #{perName,jdbcType=VARCHAR},
+      </if>
+      <if test="perSort != null" >
+        PER_SORT = #{perSort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssq.pfm.model.PermissionData" >
+    update PERMISSION_DATA
+    set PER_URL = #{perUrl,jdbcType=VARCHAR},
+      PER_NAME = #{perName,jdbcType=VARCHAR},
+      PER_SORT = #{perSort,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
